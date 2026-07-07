@@ -90,6 +90,10 @@ except Exception:
 # Number of worker threads used for the (network-bound) scraping work.
 MAX_WORKERS = 8
 
+# After a full update, serve the generated site on this port so index.html can
+# be viewed in a browser. Disable with --no-serve, override with --port N.
+SERVE_PORT = 8003
+
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 }
@@ -1526,8 +1530,45 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
         f.write(html)
     print(f"Generated {HTML_FILE}")
 
+def serve_site(port):
+    """Serve the current directory over HTTP (blocking) so index.html can be
+    viewed in a browser. Mirrors `python -m http.server <port>`."""
+    import http.server
+    import socketserver
+
+    socketserver.TCPServer.allow_reuse_address = True
+    try:
+        with socketserver.TCPServer(("", port), http.server.SimpleHTTPRequestHandler) as httpd:
+            print(f"\nServing HTTP on 0.0.0.0 port {port} (http://0.0.0.0:{port}/)")
+            print("Press Ctrl+C to stop.")
+            httpd.serve_forever()
+    except KeyboardInterrupt:
+        print("\nStopped server.")
+    except OSError as e:
+        print(f"Could not start server on port {port}: {e}")
+
+
 def main():
-    city_filter = sys.argv[1] if len(sys.argv) > 1 else None
+    # Parse flags out of argv, leaving any positional arg as the city filter.
+    serve = True
+    port = SERVE_PORT
+    positional = []
+    args = sys.argv[1:]
+    i = 0
+    while i < len(args):
+        arg = args[i]
+        if arg in ("--no-serve", "-n"):
+            serve = False
+        elif arg in ("--port", "-p"):
+            i += 1
+            port = int(args[i])
+        elif arg.startswith("--port="):
+            port = int(arg.split("=", 1)[1])
+        else:
+            positional.append(arg)
+        i += 1
+
+    city_filter = positional[0] if positional else None
 
     if city_filter:
         print(f"Filtering cities matching: '{city_filter}'")
@@ -1573,6 +1614,9 @@ def main():
 
     generate_html(processed_runners, new_data["last_updated"], gta_cities, extended_cities)
     print(f"Done in {time.monotonic() - overall_start:.1f}s")
+
+    if serve:
+        serve_site(port)
 
 if __name__ == "__main__":
     main()
