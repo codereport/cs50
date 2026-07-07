@@ -3,12 +3,82 @@
 import re
 import sys
 import time
+import threading
 import concurrent.futures
 import requests
 from bs4 import BeautifulSoup
 import json
 import os
 from datetime import datetime
+
+# ANSI colors (only emit when writing to a real terminal).
+_USE_COLOR = sys.stdout.isatty()
+GREEN = "\033[32m" if _USE_COLOR else ""
+RESET = "\033[0m" if _USE_COLOR else ""
+
+# Shared state for the live progress bar. Cities across the (concurrent) fetch
+# phases all feed a single cumulative bar, so access is guarded by a lock.
+_progress_lock = threading.Lock()
+_progress_done = 0
+_progress_total = 0
+
+
+def _progress_reset():
+    global _progress_done, _progress_total
+    with _progress_lock:
+        _progress_done = 0
+        _progress_total = 0
+
+
+def _progress_add(count):
+    """Register additional units of work with the shared progress bar."""
+    global _progress_total
+    with _progress_lock:
+        _progress_total += count
+        _render_progress()
+
+
+def _progress_advance(line=None):
+    """Increment the completed count, print an optional result line above the
+    progress bar, then redraw the bar so it stays pinned at the bottom."""
+    global _progress_done
+    with _progress_lock:
+        _progress_done += 1
+        if line is not None:
+            # Clear the current (progress bar) line before writing the result.
+            sys.stdout.write("\r\033[K" if _USE_COLOR else "\r")
+            print(line)
+        _render_progress()
+
+
+def _progress_log(line):
+    """Print a line above the (pinned) progress bar without advancing it."""
+    with _progress_lock:
+        if _progress_total > 0:
+            sys.stdout.write("\r\033[K" if _USE_COLOR else "\r")
+        print(line)
+        _render_progress()
+
+
+def _progress_finish():
+    """Move the cursor off the progress bar line once everything is done."""
+    with _progress_lock:
+        if _progress_total > 0:
+            sys.stdout.write("\n")
+            sys.stdout.flush()
+
+
+def _render_progress():
+    if _progress_total <= 0:
+        return
+    width = 30
+    frac = _progress_done / _progress_total
+    filled = int(width * frac)
+    bar = "█" * filled + "░" * (width - filled)
+    sys.stdout.write(
+        f"\r  [{bar}] {_progress_done}/{_progress_total} ({frac * 100:4.0f}%)"
+    )
+    sys.stdout.flush()
 
 # Make progress output appear immediately even when concurrent workers are
 # printing (otherwise buffered stdout can hide updates until the end).
@@ -92,7 +162,7 @@ def get_runner_location(profile_url):
             if location_div:
                 return location_div.get_text(strip=True)
     except Exception as e:
-        print(f"Error fetching location for {base_url}: {e}")
+        _progress_log(f"Error fetching location for {base_url}: {e}")
         
     return None
 
@@ -169,11 +239,11 @@ def country_to_flag(country):
 
 def _fetch_leaderboard_page(page):
     """Fetch and parse a single leaderboard page into a list of raw runner dicts."""
-    print(f"Fetching page {page}...")
+    _progress_log(f"Fetching page {page}...")
     url = f"https://citystrides.com/users/search?context=leaderboard&page={page}"
     response = SESSION.get(url)
     if response.status_code != 200:
-        print(f"Failed to fetch page {page}: {response.status_code}")
+        _progress_log(f"Failed to fetch page {page}: {response.status_code}")
         return []
 
     soup = BeautifulSoup(response.content, "html.parser")
@@ -197,7 +267,7 @@ def _fetch_leaderboard_page(page):
             if match:
                 streets = int(match.group(1).replace(",", ""))
         except Exception as e:
-            print(f"Error parsing streets for {name}: {e}")
+            _progress_log(f"Error parsing streets for {name}: {e}")
 
         page_runners.append({
             "name": name,
@@ -231,7 +301,7 @@ def fetch_leaderboard():
     if to_lookup:
         def lookup(item):
             user_id, profile_url = item
-            print(f"Fetching location for user {user_id}...")
+            _progress_log(f"Fetching location for user {user_id}...")
             location = get_runner_location(profile_url)
             return user_id, country_to_flag(location) if location else ""
 
@@ -445,14 +515,13 @@ def _process_city(city_id, city_name, label):
     We deliberately hit the per-city page (which is fast) instead of scraping
     the user's profile page, which is huge and can take 10s+ to render.
     """
-    print(f"  ... {city_name} ({label}) started")
     started = time.monotonic()
     city_path = f"/users/{CONOR_USER_ID}/cities/{city_id}"
     city_full_url = f"https://citystrides.com{city_path}"
 
     resp = SESSION.get(city_full_url)
     if resp.status_code != 200:
-        print(f"  Could not fetch {city_name} (id={city_id})")
+        _progress_advance(f"  Could not fetch {city_name} (id={city_id})")
         return None
 
     soup = BeautifulSoup(resp.content, "html.parser")
@@ -480,7 +549,10 @@ def _process_city(city_id, city_name, label):
     above_str = f" | above: {above['name']} ({above['pct']}%)" if above else ""
     status = "💯" if was_100 else ""
     elapsed = time.monotonic() - started
-    print(f"  ✓ {city_name}: {percentage}% ({completed}/{total}), rank {rank} of {total_runners} {status}{above_str} [{elapsed:.1f}s]")
+    _progress_advance(
+        f"  {GREEN}✓{RESET} {city_name}: {percentage}% ({completed}/{total}), "
+        f"rank {rank} of {total_runners} {status}{above_str} [{elapsed:.1f}s]"
+    )
 
     return {
         "city_id": city_id,
@@ -498,7 +570,7 @@ def _process_city(city_id, city_name, label):
 
 def _fetch_cities(city_map, label, city_filter=None):
     """Fetch a group of cities concurrently, one request per city page."""
-    print(f"Fetching {label} cities data...")
+    _progress_log(f"Fetching {label} cities data...")
 
     targets = [
         (city_id, city_name)
@@ -506,6 +578,7 @@ def _fetch_cities(city_map, label, city_filter=None):
         if not (city_filter and city_filter.lower() not in city_name.lower())
     ]
 
+    _progress_add(len(targets))
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         results = executor.map(
             lambda t: _process_city(t[0], t[1], label), targets
@@ -513,7 +586,7 @@ def _fetch_cities(city_map, label, city_filter=None):
         cities = [c for c in results if c]
 
     cities.sort(key=lambda x: x["percentage"], reverse=True)
-    print(f"Fetched {len(cities)} {label} cities")
+    _progress_log(f"Fetched {len(cities)} {label} cities")
     return cities
 
 
@@ -1458,8 +1531,10 @@ def main():
 
     if city_filter:
         print(f"Filtering cities matching: '{city_filter}'")
+        _progress_reset()
         gta_cities = fetch_gta_cities(city_filter)
         extended_cities = fetch_extended_cities(city_filter)
+        _progress_finish()
         for city in gta_cities + extended_cities:
             above = city.get("runner_above")
             above_str = f" | above: {above['name']} ({above['pct']}%)" if above else ""
@@ -1472,6 +1547,7 @@ def main():
     previous_data = load_previous_data()
 
     # The three scraping phases are independent, so run them concurrently.
+    _progress_reset()
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
         leaderboard_future = executor.submit(fetch_leaderboard)
         gta_future = executor.submit(fetch_gta_cities)
@@ -1480,6 +1556,7 @@ def main():
         current_runners = leaderboard_future.result()
         gta_cities = gta_future.result()
         extended_cities = extended_future.result()
+    _progress_finish()
 
     print(f"Fetched {len(current_runners)} runners")
 
