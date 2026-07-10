@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-09 13:24:21",
+  "last_updated": "2026-07-10 12:11:14",
   "cities": {
     "38108": {
       "city_id": "38108",
@@ -55,21 +55,24 @@
     "131268": {
       "city_id": "131268",
       "name": "Toronto",
-      "completed": 8750,
+      "completed": 8773,
       "total": 10318,
-      "percentage": 84.8,
+      "percentage": 85.03,
       "rank": 6,
       "total_runners": 3765,
       "city_url": "https://citystrides.com/users/55228/cities/131268",
       "was_100": false,
-      "runner_above": null
+      "runner_above": {
+        "name": "Steve Jackson",
+        "pct": 87.97
+      }
     },
     "38007": {
       "city_id": "38007",
       "name": "Scarborough",
-      "completed": 1814,
+      "completed": 1836,
       "total": 2599,
-      "percentage": 69.8,
+      "percentage": 70.64,
       "rank": 7,
       "total_runners": 568,
       "city_url": "https://citystrides.com/users/55228/cities/38007",
