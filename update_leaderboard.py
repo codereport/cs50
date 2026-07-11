@@ -1072,6 +1072,118 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
             outline: none;
             border-color: #4c1d95;
         }}
+
+        /* Let wide tables scroll horizontally instead of overflowing the viewport */
+        .table-scroll {{
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }}
+
+        @media (max-width: 768px) {{
+            body {{
+                padding: 10px;
+                font-size: 16px;
+            }}
+
+            .main-container {{
+                padding: 16px;
+                border-radius: 10px;
+            }}
+
+            h1 {{
+                font-size: 1.5em;
+            }}
+
+            /* Horizontal scroll for the tab bar so buttons never wrap awkwardly */
+            .tab-bar {{
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }}
+
+            .tab-bar::-webkit-scrollbar {{
+                display: none;
+            }}
+
+            .tab-btn {{
+                padding: 12px 16px;
+                font-size: 0.95em;
+                white-space: nowrap;
+            }}
+
+            .tab-content {{
+                padding-top: 16px;
+            }}
+
+            .delta-controls {{
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                padding: 14px;
+                margin-bottom: 20px;
+            }}
+
+            .delta-controls select {{
+                min-width: 0;
+                width: 100%;
+                box-sizing: border-box;
+            }}
+
+            .delta-controls .delta-arrow {{
+                display: none;
+            }}
+
+            .toggle-button {{
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+                margin: 0 0 20px 0;
+                padding: 14px 16px;
+            }}
+
+            th,
+            td {{
+                padding: 9px 10px;
+                font-size: 0.85em;
+            }}
+
+            /* Keep numeric/short columns from wrapping; let names wrap */
+            td:first-child,
+            th:first-child {{
+                white-space: nowrap;
+            }}
+
+            .modal-content {{
+                padding: 20px 16px;
+                width: 94%;
+            }}
+
+            .modal-close {{
+                top: 10px;
+                right: 10px;
+            }}
+
+            .time-series-container {{
+                height: 60vh;
+            }}
+
+            .forecast-chart-container {{
+                height: 320px;
+            }}
+
+            .forecast-controls {{
+                gap: 8px;
+            }}
+
+            .forecast-summary {{
+                font-size: 0.9em;
+            }}
+
+            h3 {{
+                font-size: 1.15em;
+            }}
+        }}
     </style>
 </head>
 
@@ -1098,6 +1210,7 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
                 <select id="toDate" onchange="updateCustomDeltas()"></select>
             </div>
 
+            <div class="table-scroll">
             <table>
                 <thead>
                     <tr>
@@ -1162,10 +1275,12 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
     html += f"""
                 </tbody>
             </table>
+            </div>
         </div>
 
         <div id="tab-gta" class="tab-content">
             <p class="updated" style="margin-top: 20px;">Data for <a href="https://citystrides.com/users/{CONOR_USER_ID}" class="profile-link" target="_blank">Conor Hoekstra</a> &middot; Last updated: {last_updated}</p>
+            <div class="table-scroll">
             <table>
                 <thead>
                     <tr>
@@ -1182,8 +1297,10 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
                     {gta_rows_html}
                 </tbody>
             </table>
+            </div>
 
             <h3 style="color: #4c1d95; margin-top: 40px;">Extended</h3>
+            <div class="table-scroll">
             <table>
                 <thead>
                     <tr>
@@ -1200,6 +1317,7 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
                     {extended_rows_html}
                 </tbody>
             </table>
+            </div>
 
             <h3 style="color: #4c1d95; margin-top: 40px;">Toronto Completion Forecast</h3>
             <div class="forecast-controls">
