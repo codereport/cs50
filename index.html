@@ -2336,14 +2336,15 @@
             }];
 
             let projEndMs = last.t;
-            let summary;
+            let linearEndMs = last.t;
+            let summary = '';
             if (perWeek > 0 && remaining > 0) {
                 const remainingWeeks = remaining / perWeek;
                 projEndMs = last.t + remainingWeeks * 7 * DAY;
                 const finishDate = new Date(projEndMs);
                 const fmt = finishDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
                 datasets.push({
-                    label: 'Projection',
+                    label: 'Run-based projection',
                     data: [{ x: last.t, y: last.completed }, { x: projEndMs, y: total }],
                     borderColor: 'rgb(22, 163, 74)',
                     borderWidth: 2,
@@ -2360,7 +2361,32 @@
                 summary = 'Average is <strong>' + avgPerRun.toFixed(1) + ' streets/run</strong> — not enough to project a completion date.';
             }
 
-            const targetEndMs = projEndMs > last.t ? projEndMs : last.t;
+            const JULY4_MS = new Date('2026-07-04T00:00:00').getTime();
+            const july4Anchor = pts.find(p => p.t >= JULY4_MS);
+            if (july4Anchor && last.t > july4Anchor.t && remaining > 0) {
+                const slopePerMs = (last.completed - july4Anchor.completed) / (last.t - july4Anchor.t);
+                if (slopePerMs > 0) {
+                    linearEndMs = last.t + remaining / slopePerMs;
+                    const perWeekLinear = slopePerMs * 7 * DAY;
+                    const linearFinish = new Date(linearEndMs);
+                    const linearFmt = linearFinish.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                    const linearWeeks = (linearEndMs - last.t) / (7 * DAY);
+                    datasets.push({
+                        label: 'Linear (since Jul 4)',
+                        data: [{ x: last.t, y: last.completed }, { x: linearEndMs, y: total }],
+                        borderColor: 'rgb(37, 99, 235)',
+                        borderWidth: 2,
+                        borderDash: [4, 4],
+                        pointRadius: 0,
+                        fill: false
+                    });
+                    summary += (summary ? ' ' : '') + 'Linear extrapolation since <strong>July 4</strong> (≈' +
+                        perWeekLinear.toFixed(0) + ' streets/week) reaches completion around <strong>' + linearFmt +
+                        '</strong> (~' + Math.ceil(linearWeeks) + ' weeks).';
+                }
+            }
+
+            const targetEndMs = Math.max(projEndMs, linearEndMs, last.t);
             datasets.push({
                 label: 'Total streets (' + total.toLocaleString() + ')',
                 data: [{ x: pts[0].t, y: total }, { x: targetEndMs, y: total }],
