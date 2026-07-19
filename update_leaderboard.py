@@ -795,6 +795,7 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
 
         .tab-bar {{
             display: flex;
+            justify-content: center;
             gap: 0;
             border-bottom: 2px solid #e4e4e7;
             margin-bottom: 0;
@@ -1097,6 +1098,7 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
 
             /* Horizontal scroll for the tab bar so buttons never wrap awkwardly */
             .tab-bar {{
+                justify-content: center;
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
                 scrollbar-width: none;
@@ -1107,7 +1109,8 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
             }}
 
             .tab-btn {{
-                padding: 12px 16px;
+                flex: 1 1 0;
+                padding: 12px 6px;
                 font-size: 0.95em;
                 white-space: nowrap;
             }}
