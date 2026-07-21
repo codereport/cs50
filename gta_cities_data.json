@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-20 10:18:32",
+  "last_updated": "2026-07-21 12:35:51",
   "cities": {
     "38108": {
       "city_id": "38108",
@@ -8,7 +8,7 @@
       "total": 2710,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 932,
+      "total_runners": 934,
       "city_url": "https://citystrides.com/users/55228/cities/38108",
       "was_100": true,
       "runner_above": null
@@ -32,7 +32,7 @@
       "total": 404,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 727,
+      "total_runners": 729,
       "city_url": "https://citystrides.com/users/55228/cities/38114",
       "was_100": true,
       "runner_above": null
@@ -44,7 +44,7 @@
       "total": 2470,
       "percentage": 99.39,
       "rank": 6,
-      "total_runners": 3528,
+      "total_runners": 3530,
       "city_url": "https://citystrides.com/users/55228/cities/38121",
       "was_100": true,
       "runner_above": {
@@ -55,11 +55,11 @@
     "131268": {
       "city_id": "131268",
       "name": "Toronto",
-      "completed": 9082,
+      "completed": 9125,
       "total": 10318,
-      "percentage": 88.02,
+      "percentage": 88.44,
       "rank": 6,
-      "total_runners": 3786,
+      "total_runners": 3790,
       "city_url": "https://citystrides.com/users/55228/cities/131268",
       "was_100": false,
       "runner_above": {
@@ -70,16 +70,16 @@
     "38007": {
       "city_id": "38007",
       "name": "Scarborough",
-      "completed": 2081,
+      "completed": 2124,
       "total": 2599,
-      "percentage": 80.07,
+      "percentage": 81.72,
       "rank": 7,
-      "total_runners": 572,
+      "total_runners": 573,
       "city_url": "https://citystrides.com/users/55228/cities/38007",
       "was_100": false,
       "runner_above": {
         "name": "A private Strider",
-        "pct": 87.73
+        "pct": 88.53
       }
     },
     "38014": {
