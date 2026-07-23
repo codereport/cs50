@@ -696,6 +696,19 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
     # Generate history files JSON for the frontend
     history_files_json = get_history_files_for_js()
     toronto_series_json = get_toronto_series_for_js()
+    toronto_current = next(
+        (
+            {
+                "date": last_updated,
+                "completed": city["completed"],
+                "total": city["total"],
+            }
+            for city in (gta_cities or [])
+            if city["city_id"] == TORONTO_CITY_ID
+        ),
+        None,
+    )
+    toronto_current_json = json.dumps(toronto_current)
 
     # Build GTA cities table rows
     gta_rows_html = ""
@@ -1357,6 +1370,10 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
 
         const torontoSeries = {toronto_series_json};
 
+        // This is the Toronto value fetched during this update. History is used
+        // to estimate pace, but is not the source of truth for current progress.
+        const torontoCurrent = {toronto_current_json};
+
         let historyCache = {{}};
 
         async function init() {{
@@ -1532,6 +1549,28 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
                 .map(d => ({{ t: new Date(d.date.replace(' ', 'T')).getTime(), completed: d.completed, total: d.total }}))
                 .filter(p => !isNaN(p.t))
                 .sort((a, b) => a.t - b.t);
+            const current = torontoCurrent ? {{
+                t: new Date(torontoCurrent.date.replace(' ', 'T')).getTime(),
+                completed: torontoCurrent.completed,
+                total: torontoCurrent.total
+            }} : null;
+
+            // update_gta_tracking normally puts the same value in the history
+            // series. Merge it here as well so a stale/missing history file can
+            // never make the displayed current Toronto count stale.
+            if (current && !isNaN(current.t) && current.completed > 0 && current.total > 0) {{
+                const latest = pts[pts.length - 1];
+                if (
+                    latest &&
+                    latest.completed === current.completed &&
+                    latest.total === current.total
+                ) {{
+                    latest.t = Math.max(latest.t, current.t);
+                }} else {{
+                    pts.push(current);
+                    pts.sort((a, b) => a.t - b.t);
+                }}
+            }}
 
             if (torontoForecastChart) {{
                 torontoForecastChart.destroy();
@@ -1539,7 +1578,11 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
             }}
 
             if (pts.length < 2) {{
-                summaryEl.innerHTML = 'Not enough history yet to estimate completion. Collecting data\u2026';
+                const latest = pts[pts.length - 1];
+                summaryEl.innerHTML = latest
+                    ? 'Current Toronto progress is <strong>' + latest.completed.toLocaleString() + ' / ' +
+                        latest.total.toLocaleString() + '</strong>. Not enough history yet to estimate completion.'
+                    : 'Toronto progress is unavailable. Collecting data\u2026';
                 return;
             }}
 
@@ -1588,13 +1631,17 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
                     pointRadius: 0,
                     fill: false
                 }});
-                summary = 'Averaging <strong>' + avgPerRun.toFixed(1) + ' streets/run</strong> over ' + deltas.length +
+                summary = 'Current Toronto progress is <strong>' + last.completed.toLocaleString() + ' / ' +
+                    total.toLocaleString() + '</strong>. Averaging <strong>' + avgPerRun.toFixed(1) +
+                    ' streets/run</strong> over ' + deltas.length +
                     ' recorded runs, at <strong>' + runsPerWeek + ' runs/week</strong> (\u2248' + perWeek.toFixed(0) +
                     ' streets/week) the remaining <strong>' + remaining.toLocaleString() + '</strong> of ' +
                     total.toLocaleString() + ' streets should be done around <strong>' + fmt + '</strong> (~' +
                     Math.ceil(remainingWeeks) + ' weeks).';
             }} else {{
-                summary = 'Average is <strong>' + avgPerRun.toFixed(1) + ' streets/run</strong> \u2014 not enough to project a completion date.';
+                summary = 'Current Toronto progress is <strong>' + last.completed.toLocaleString() + ' / ' +
+                    total.toLocaleString() + '</strong>. Average is <strong>' + avgPerRun.toFixed(1) +
+                    ' streets/run</strong> \u2014 not enough to project a completion date.';
             }}
 
             const JULY4_MS = new Date('2026-07-04T00:00:00').getTime();
