@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-28 11:11:41",
+  "last_updated": "2026-07-29 17:48:18",
   "cities": {
     "38108": {
       "city_id": "38108",
@@ -32,7 +32,7 @@
       "total": 404,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 736,
+      "total_runners": 737,
       "city_url": "https://citystrides.com/users/55228/cities/38114",
       "was_100": true,
       "runner_above": null
@@ -44,7 +44,7 @@
       "total": 2470,
       "percentage": 99.39,
       "rank": 6,
-      "total_runners": 3547,
+      "total_runners": 3550,
       "city_url": "https://citystrides.com/users/55228/cities/38121",
       "was_100": true,
       "runner_above": {
@@ -52,27 +52,12 @@
         "pct": 99.6
       }
     },
-    "131268": {
-      "city_id": "131268",
-      "name": "Toronto",
-      "completed": 9355,
-      "total": 10318,
-      "percentage": 90.67,
-      "rank": 5,
-      "total_runners": 3807,
-      "city_url": "https://citystrides.com/users/55228/cities/131268",
-      "was_100": false,
-      "runner_above": {
-        "name": "Richard Denis",
-        "pct": 99.4
-      }
-    },
     "38007": {
       "city_id": "38007",
       "name": "Scarborough",
-      "completed": 2354,
+      "completed": 2381,
       "total": 2599,
-      "percentage": 90.57,
+      "percentage": 91.61,
       "rank": 6,
       "total_runners": 576,
       "city_url": "https://citystrides.com/users/55228/cities/38007",
@@ -80,6 +65,21 @@
       "runner_above": {
         "name": "Steve Jackson",
         "pct": 91.8
+      }
+    },
+    "131268": {
+      "city_id": "131268",
+      "name": "Toronto",
+      "completed": 9382,
+      "total": 10318,
+      "percentage": 90.93,
+      "rank": 5,
+      "total_runners": 3810,
+      "city_url": "https://citystrides.com/users/55228/cities/131268",
+      "was_100": false,
+      "runner_above": {
+        "name": "Richard Denis",
+        "pct": 99.4
       }
     },
     "38014": {
