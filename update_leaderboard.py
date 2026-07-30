@@ -815,6 +815,7 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
         }}
 
         .tab-btn {{
+            display: inline-block;
             padding: 14px 28px;
             background: none;
             border: none;
@@ -824,6 +825,7 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
             font-weight: 500;
             color: #71717a;
             cursor: pointer;
+            text-decoration: none;
             transition: all 0.2s;
         }}
 
@@ -1067,24 +1069,48 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
             flex-wrap: wrap;
         }}
 
-        .forecast-controls label {{
+        .forecast-label {{
             font-size: 0.85em;
             font-weight: 500;
             color: #4c1d95;
         }}
 
-        .forecast-controls input[type="number"] {{
-            width: 80px;
-            padding: 8px 10px;
-            font-size: 0.85em;
+        .forecast-run-options {{
+            display: inline-flex;
+            overflow: hidden;
             border: 2px solid #e4e4e7;
             border-radius: 6px;
-            background: white;
         }}
 
-        .forecast-controls input[type="number"]:focus {{
-            outline: none;
-            border-color: #4c1d95;
+        .forecast-run-btn {{
+            min-width: 52px;
+            padding: 8px 14px;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: #4c1d95;
+            border: none;
+            border-right: 1px solid #e4e4e7;
+            background: white;
+            cursor: pointer;
+            transition: color 0.2s, background 0.2s;
+        }}
+
+        .forecast-run-btn:last-child {{
+            border-right: none;
+        }}
+
+        .forecast-run-btn:hover {{
+            background: #faf5ff;
+        }}
+
+        .forecast-run-btn.active {{
+            color: white;
+            background: #4c1d95;
+        }}
+
+        .forecast-run-btn:focus-visible {{
+            outline: 3px solid #a78bfa;
+            outline-offset: -3px;
         }}
 
         /* Let wide tables scroll horizontally instead of overflowing the viewport */
@@ -1207,9 +1233,9 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
     <div class="main-container">
         <h1>CityStrides Rankings</h1>
 
-        <div class="tab-bar">
-            <button class="tab-btn active" data-tab="leaderboard" onclick="switchTab('leaderboard')">Top 50 Leaderboard</button>
-            <button class="tab-btn" data-tab="gta" onclick="switchTab('gta')">Top GTA Cities</button>
+        <div class="tab-bar" role="tablist" aria-label="Rankings views">
+            <a class="tab-btn active" data-tab="leaderboard" href="#leaderboard" role="tab" aria-selected="true" aria-controls="tab-leaderboard">Top 50 Leaderboard</a>
+            <a class="tab-btn" data-tab="gta" href="#gta" role="tab" aria-selected="false" aria-controls="tab-gta">Top GTA Cities</a>
         </div>
 
         <div id="tab-leaderboard" class="tab-content active">
@@ -1337,8 +1363,11 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
 
             <h3 style="color: #4c1d95; margin-top: 40px;">Toronto Completion Forecast</h3>
             <div class="forecast-controls">
-                <label for="torontoRunsPerWeek">Runs per week in Toronto:</label>
-                <input type="number" id="torontoRunsPerWeek" value="5" min="1" max="21" step="1" oninput="renderTorontoForecast()">
+                <span class="forecast-label" id="torontoRunsLabel">Runs per week in Toronto:</span>
+                <div class="forecast-run-options" role="group" aria-labelledby="torontoRunsLabel">
+                    <button type="button" class="forecast-run-btn active" data-runs="5" aria-pressed="true" onclick="setTorontoRunsPerWeek(5)">5</button>
+                    <button type="button" class="forecast-run-btn" data-runs="6" aria-pressed="false" onclick="setTorontoRunsPerWeek(6)">6</button>
+                </div>
             </div>
             <p id="torontoForecastSummary" class="forecast-summary"></p>
             <div class="forecast-chart-container">
@@ -1358,13 +1387,28 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
     </div>
 
     <script>
+        const tabIds = ['leaderboard', 'gta'];
+
         function switchTab(tabId) {{
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            document.querySelector('[data-tab="' + tabId + '"]').classList.add('active');
-            document.getElementById('tab-' + tabId).classList.add('active');
+            document.querySelectorAll('.tab-btn').forEach(btn => {{
+                const isActive = btn.dataset.tab === tabId;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-selected', String(isActive));
+            }});
+            document.querySelectorAll('.tab-content').forEach(content => {{
+                content.classList.toggle('active', content.id === 'tab-' + tabId);
+            }});
             if (tabId === 'gta') renderTorontoForecast();
         }}
+
+        function syncTabFromUrl() {{
+            const requestedTab = window.location.hash.slice(1);
+            const tabId = tabIds.includes(requestedTab) ? requestedTab : 'leaderboard';
+            if (requestedTab !== tabId) history.replaceState(null, '', '#' + tabId);
+            switchTab(tabId);
+        }}
+
+        window.addEventListener('hashchange', syncTabFromUrl);
 
         const historyFiles = {history_files_json};
 
@@ -1539,6 +1583,17 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
         }}
 
         let torontoForecastChart = null;
+
+        function setTorontoRunsPerWeek(runsPerWeek) {{
+            if (![5, 6].includes(runsPerWeek)) return;
+            document.querySelectorAll('.forecast-run-btn').forEach(btn => {{
+                const isActive = Number(btn.dataset.runs) === runsPerWeek;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-pressed', String(isActive));
+            }});
+            renderTorontoForecast();
+        }}
+
         function renderTorontoForecast() {{
             const summaryEl = document.getElementById('torontoForecastSummary');
             const canvas = document.getElementById('torontoForecastChart');
@@ -1596,10 +1651,9 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
             for (let i = 1; i < pts.length; i++) deltas.push(pts[i].completed - pts[i - 1].completed);
             const avgPerRun = deltas.reduce((a, b) => a + b, 0) / deltas.length;
 
-            // Runs per week is a user assumption about future cadence (default 4).
-            const runsInput = document.getElementById('torontoRunsPerWeek');
-            let runsPerWeek = runsInput ? parseFloat(runsInput.value) : 5;
-            if (!isFinite(runsPerWeek) || runsPerWeek <= 0) runsPerWeek = 5;
+            // Runs per week is a user assumption about future cadence.
+            const activeRunsButton = document.querySelector('.forecast-run-btn.active');
+            const runsPerWeek = Number(activeRunsButton?.dataset.runs) || 5;
 
             const perWeek = avgPerRun * runsPerWeek;
 
@@ -1687,6 +1741,7 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
                 type: 'line',
                 data: {{ datasets }},
                 options: {{
+                    animation: false,
                     responsive: true,
                     maintainAspectRatio: false,
                     interaction: {{ mode: 'nearest', intersect: false }},
@@ -1714,6 +1769,7 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
             }});
         }}
 
+        syncTabFromUrl();
         init();
     </script>
 </body>
