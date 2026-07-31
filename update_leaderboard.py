@@ -1152,6 +1152,7 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
                 padding: 12px 6px;
                 font-size: 0.95em;
                 white-space: nowrap;
+                text-align: center;
             }}
 
             .tab-content {{
