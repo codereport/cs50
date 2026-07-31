@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-30 12:22:01",
+  "last_updated": "2026-07-31 13:33:48",
   "cities": {
     "38108": {
       "city_id": "38108",
@@ -8,7 +8,7 @@
       "total": 2710,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 938,
+      "total_runners": 939,
       "city_url": "https://citystrides.com/users/55228/cities/38108",
       "was_100": true,
       "runner_above": null
@@ -32,7 +32,7 @@
       "total": 404,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 737,
+      "total_runners": 738,
       "city_url": "https://citystrides.com/users/55228/cities/38114",
       "was_100": true,
       "runner_above": null
@@ -44,7 +44,7 @@
       "total": 2470,
       "percentage": 99.39,
       "rank": 6,
-      "total_runners": 3551,
+      "total_runners": 3559,
       "city_url": "https://citystrides.com/users/55228/cities/38121",
       "was_100": true,
       "runner_above": {
@@ -55,9 +55,9 @@
     "38007": {
       "city_id": "38007",
       "name": "Scarborough",
-      "completed": 2421,
+      "completed": 2453,
       "total": 2599,
-      "percentage": 93.15,
+      "percentage": 94.38,
       "rank": 5,
       "total_runners": 576,
       "city_url": "https://citystrides.com/users/55228/cities/38007",
@@ -70,11 +70,11 @@
     "131268": {
       "city_id": "131268",
       "name": "Toronto",
-      "completed": 9422,
+      "completed": 9453,
       "total": 10318,
-      "percentage": 91.32,
+      "percentage": 91.62,
       "rank": 5,
-      "total_runners": 3811,
+      "total_runners": 3819,
       "city_url": "https://citystrides.com/users/55228/cities/131268",
       "was_100": false,
       "runner_above": {
@@ -89,12 +89,12 @@
       "total": 1931,
       "percentage": 65.35,
       "rank": 10,
-      "total_runners": 846,
+      "total_runners": 847,
       "city_url": "https://citystrides.com/users/55228/cities/38014",
       "was_100": false,
       "runner_above": {
         "name": "A private Strider",
-        "pct": 71.83
+        "pct": 73.33
       }
     },
     "37668": {
