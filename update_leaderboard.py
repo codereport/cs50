@@ -1366,8 +1366,8 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
             <div class="forecast-controls">
                 <span class="forecast-label" id="torontoRunsLabel">Runs per week in Toronto:</span>
                 <div class="forecast-run-options" role="group" aria-labelledby="torontoRunsLabel">
-                    <button type="button" class="forecast-run-btn active" data-runs="5" aria-pressed="true" onclick="setTorontoRunsPerWeek(5)">5</button>
-                    <button type="button" class="forecast-run-btn" data-runs="6" aria-pressed="false" onclick="setTorontoRunsPerWeek(6)">6</button>
+                    <button type="button" class="forecast-run-btn" data-runs="5" aria-pressed="false" onclick="setTorontoRunsPerWeek(5)">5</button>
+                    <button type="button" class="forecast-run-btn active" data-runs="6" aria-pressed="true" onclick="setTorontoRunsPerWeek(6)">6</button>
                 </div>
             </div>
             <p id="torontoForecastSummary" class="forecast-summary"></p>
@@ -1654,7 +1654,7 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
 
             // Runs per week is a user assumption about future cadence.
             const activeRunsButton = document.querySelector('.forecast-run-btn.active');
-            const runsPerWeek = Number(activeRunsButton?.dataset.runs) || 5;
+            const runsPerWeek = Number(activeRunsButton?.dataset.runs) || 6;
 
             const perWeek = avgPerRun * runsPerWeek;
 
