@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-03 11:53:11",
+  "last_updated": "2026-08-04 21:36:30",
   "cities": {
     "38108": {
       "city_id": "38108",
@@ -8,7 +8,7 @@
       "total": 2710,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 939,
+      "total_runners": 940,
       "city_url": "https://citystrides.com/users/55228/cities/38108",
       "was_100": true,
       "runner_above": null
@@ -32,7 +32,7 @@
       "total": 404,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 738,
+      "total_runners": 739,
       "city_url": "https://citystrides.com/users/55228/cities/38114",
       "was_100": true,
       "runner_above": null
@@ -52,26 +52,26 @@
     "38121": {
       "city_id": "38121",
       "name": "Old Toronto",
-      "completed": 2455,
+      "completed": 2462,
       "total": 2470,
-      "percentage": 99.39,
-      "rank": 6,
-      "total_runners": 3565,
+      "percentage": 99.68,
+      "rank": 5,
+      "total_runners": 3566,
       "city_url": "https://citystrides.com/users/55228/cities/38121",
       "was_100": true,
       "runner_above": {
-        "name": "Richard Denis",
-        "pct": 99.6
+        "name": "Ren",
+        "pct": 99.72
       }
     },
     "131268": {
       "city_id": "131268",
       "name": "Toronto",
-      "completed": 9598,
+      "completed": 9624,
       "total": 10318,
-      "percentage": 93.02,
+      "percentage": 93.27,
       "rank": 5,
-      "total_runners": 3825,
+      "total_runners": 3826,
       "city_url": "https://citystrides.com/users/55228/cities/131268",
       "was_100": false,
       "runner_above": {
@@ -91,7 +91,7 @@
       "was_100": false,
       "runner_above": {
         "name": "A private Strider",
-        "pct": 73.33
+        "pct": 74.42
       }
     },
     "37668": {
