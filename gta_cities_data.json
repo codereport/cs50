@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-06 13:33:22",
+  "last_updated": "2026-08-07 13:40:09",
   "cities": {
     "38108": {
       "city_id": "38108",
@@ -52,24 +52,21 @@
     "38121": {
       "city_id": "38121",
       "name": "Old Toronto",
-      "completed": 2462,
+      "completed": 2467,
       "total": 2470,
-      "percentage": 99.68,
-      "rank": 5,
-      "total_runners": 3571,
+      "percentage": 99.88,
+      "rank": 2,
+      "total_runners": 3572,
       "city_url": "https://citystrides.com/users/55228/cities/38121",
       "was_100": true,
-      "runner_above": {
-        "name": "Ren",
-        "pct": 99.72
-      }
+      "runner_above": null
     },
     "131268": {
       "city_id": "131268",
       "name": "Toronto",
-      "completed": 9706,
+      "completed": 9784,
       "total": 10318,
-      "percentage": 94.07,
+      "percentage": 94.82,
       "rank": 5,
       "total_runners": 3831,
       "city_url": "https://citystrides.com/users/55228/cities/131268",
@@ -82,16 +79,16 @@
     "38014": {
       "city_id": "38014",
       "name": "Etobicoke",
-      "completed": 1344,
+      "completed": 1409,
       "total": 1931,
-      "percentage": 69.6,
+      "percentage": 72.97,
       "rank": 10,
       "total_runners": 850,
       "city_url": "https://citystrides.com/users/55228/cities/38014",
       "was_100": false,
       "runner_above": {
         "name": "A private Strider",
-        "pct": 74.42
+        "pct": 76.02
       }
     },
     "37668": {
