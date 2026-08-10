@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-09 16:28:02",
+  "last_updated": "2026-08-10 15:52:48",
   "cities": {
     "38108": {
       "city_id": "38108",
@@ -32,43 +32,43 @@
       "total": 404,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 740,
+      "total_runners": 741,
       "city_url": "https://citystrides.com/users/55228/cities/38114",
+      "was_100": true,
+      "runner_above": null
+    },
+    "38121": {
+      "city_id": "38121",
+      "name": "Old Toronto",
+      "completed": 2470,
+      "total": 2470,
+      "percentage": 100.0,
+      "rank": 1,
+      "total_runners": 3581,
+      "city_url": "https://citystrides.com/users/55228/cities/38121",
       "was_100": true,
       "runner_above": null
     },
     "38007": {
       "city_id": "38007",
       "name": "Scarborough",
-      "completed": 2597,
+      "completed": 2599,
       "total": 2599,
-      "percentage": 99.92,
+      "percentage": 100.0,
       "rank": 1,
       "total_runners": 577,
       "city_url": "https://citystrides.com/users/55228/cities/38007",
-      "was_100": false,
-      "runner_above": null
-    },
-    "38121": {
-      "city_id": "38121",
-      "name": "Old Toronto",
-      "completed": 2467,
-      "total": 2470,
-      "percentage": 99.88,
-      "rank": 2,
-      "total_runners": 3579,
-      "city_url": "https://citystrides.com/users/55228/cities/38121",
       "was_100": true,
       "runner_above": null
     },
     "131268": {
       "city_id": "131268",
       "name": "Toronto",
-      "completed": 9784,
+      "completed": 9786,
       "total": 10318,
-      "percentage": 94.82,
+      "percentage": 94.84,
       "rank": 5,
-      "total_runners": 3838,
+      "total_runners": 3841,
       "city_url": "https://citystrides.com/users/55228/cities/131268",
       "was_100": false,
       "runner_above": {
@@ -109,9 +109,9 @@
     "37680": {
       "city_id": "37680",
       "name": "Markham",
-      "completed": 393,
+      "completed": 423,
       "total": 2308,
-      "percentage": 17.03,
+      "percentage": 18.33,
       "rank": 8,
       "total_runners": 360,
       "city_url": "https://citystrides.com/users/55228/cities/37680",
