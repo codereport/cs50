@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-11 11:44:09",
+  "last_updated": "2026-08-12 17:22:14",
   "cities": {
     "38108": {
       "city_id": "38108",
@@ -44,7 +44,7 @@
       "total": 2470,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 3580,
+      "total_runners": 3585,
       "city_url": "https://citystrides.com/users/55228/cities/38121",
       "was_100": true,
       "runner_above": null
@@ -64,11 +64,11 @@
     "131268": {
       "city_id": "131268",
       "name": "Toronto",
-      "completed": 9843,
+      "completed": 9886,
       "total": 10318,
-      "percentage": 95.4,
+      "percentage": 95.81,
       "rank": 5,
-      "total_runners": 3840,
+      "total_runners": 3845,
       "city_url": "https://citystrides.com/users/55228/cities/131268",
       "was_100": false,
       "runner_above": {
@@ -79,16 +79,16 @@
     "38014": {
       "city_id": "38014",
       "name": "Etobicoke",
-      "completed": 1464,
+      "completed": 1506,
       "total": 1931,
-      "percentage": 75.82,
-      "rank": 10,
+      "percentage": 77.99,
+      "rank": 9,
       "total_runners": 850,
       "city_url": "https://citystrides.com/users/55228/cities/38014",
       "was_100": false,
       "runner_above": {
-        "name": "A private Strider",
-        "pct": 76.02
+        "name": "Steve Jackson",
+        "pct": 98.65
       }
     },
     "37668": {
@@ -113,7 +113,7 @@
       "total": 2308,
       "percentage": 18.33,
       "rank": 8,
-      "total_runners": 360,
+      "total_runners": 361,
       "city_url": "https://citystrides.com/users/55228/cities/37680",
       "was_100": false,
       "runner_above": {
@@ -128,7 +128,7 @@
       "total": 1377,
       "percentage": 2.61,
       "rank": 27,
-      "total_runners": 194,
+      "total_runners": 195,
       "city_url": "https://citystrides.com/users/55228/cities/37878",
       "was_100": false,
       "runner_above": {
