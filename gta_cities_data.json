@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-13 15:22:24",
+  "last_updated": "2026-08-14 09:23:49",
   "cities": {
     "38108": {
       "city_id": "38108",
@@ -44,7 +44,7 @@
       "total": 2470,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 3586,
+      "total_runners": 3587,
       "city_url": "https://citystrides.com/users/55228/cities/38121",
       "was_100": true,
       "runner_above": null
@@ -64,11 +64,11 @@
     "131268": {
       "city_id": "131268",
       "name": "Toronto",
-      "completed": 9924,
+      "completed": 9978,
       "total": 10318,
-      "percentage": 96.18,
+      "percentage": 96.7,
       "rank": 5,
-      "total_runners": 3846,
+      "total_runners": 3848,
       "city_url": "https://citystrides.com/users/55228/cities/131268",
       "was_100": false,
       "runner_above": {
@@ -79,11 +79,11 @@
     "38014": {
       "city_id": "38014",
       "name": "Etobicoke",
-      "completed": 1545,
+      "completed": 1598,
       "total": 1931,
-      "percentage": 80.01,
+      "percentage": 82.76,
       "rank": 9,
-      "total_runners": 850,
+      "total_runners": 851,
       "city_url": "https://citystrides.com/users/55228/cities/38014",
       "was_100": false,
       "runner_above": {
