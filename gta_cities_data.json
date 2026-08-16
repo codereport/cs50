@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-14 09:23:49",
+  "last_updated": "2026-08-16 13:09:56",
   "cities": {
     "38108": {
       "city_id": "38108",
@@ -32,7 +32,7 @@
       "total": 404,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 740,
+      "total_runners": 742,
       "city_url": "https://citystrides.com/users/55228/cities/38114",
       "was_100": true,
       "runner_above": null
@@ -44,7 +44,7 @@
       "total": 2470,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 3587,
+      "total_runners": 3592,
       "city_url": "https://citystrides.com/users/55228/cities/38121",
       "was_100": true,
       "runner_above": null
@@ -56,7 +56,7 @@
       "total": 2599,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 576,
+      "total_runners": 577,
       "city_url": "https://citystrides.com/users/55228/cities/38007",
       "was_100": true,
       "runner_above": null
@@ -64,11 +64,11 @@
     "131268": {
       "city_id": "131268",
       "name": "Toronto",
-      "completed": 9978,
+      "completed": 10003,
       "total": 10318,
-      "percentage": 96.7,
+      "percentage": 96.95,
       "rank": 5,
-      "total_runners": 3848,
+      "total_runners": 3855,
       "city_url": "https://citystrides.com/users/55228/cities/131268",
       "was_100": false,
       "runner_above": {
@@ -79,11 +79,11 @@
     "38014": {
       "city_id": "38014",
       "name": "Etobicoke",
-      "completed": 1598,
+      "completed": 1623,
       "total": 1931,
-      "percentage": 82.76,
+      "percentage": 84.05,
       "rank": 9,
-      "total_runners": 851,
+      "total_runners": 852,
       "city_url": "https://citystrides.com/users/55228/cities/38014",
       "was_100": false,
       "runner_above": {
@@ -113,7 +113,7 @@
       "total": 2308,
       "percentage": 18.33,
       "rank": 8,
-      "total_runners": 361,
+      "total_runners": 362,
       "city_url": "https://citystrides.com/users/55228/cities/37680",
       "was_100": false,
       "runner_above": {
