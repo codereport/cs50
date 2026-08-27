@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-08-26 11:58:55",
+  "last_updated": "2026-08-27 14:19:28",
   "cities": {
+    "131268": {
+      "city_id": "131268",
+      "name": "Toronto",
+      "completed": 10318,
+      "total": 10318,
+      "percentage": 100.0,
+      "rank": 1,
+      "total_runners": 3874,
+      "city_url": "https://citystrides.com/users/55228/cities/131268",
+      "was_100": true,
+      "runner_above": null
+    },
     "38108": {
       "city_id": "38108",
       "name": "North York",
@@ -32,7 +44,7 @@
       "total": 404,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 743,
+      "total_runners": 744,
       "city_url": "https://citystrides.com/users/55228/cities/38114",
       "was_100": true,
       "runner_above": null
@@ -44,8 +56,20 @@
       "total": 2470,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 3609,
+      "total_runners": 3611,
       "city_url": "https://citystrides.com/users/55228/cities/38121",
+      "was_100": true,
+      "runner_above": null
+    },
+    "38014": {
+      "city_id": "38014",
+      "name": "Etobicoke",
+      "completed": 1931,
+      "total": 1931,
+      "percentage": 100.0,
+      "rank": 1,
+      "total_runners": 855,
+      "city_url": "https://citystrides.com/users/55228/cities/38014",
       "was_100": true,
       "runner_above": null
     },
@@ -60,36 +84,6 @@
       "city_url": "https://citystrides.com/users/55228/cities/38007",
       "was_100": true,
       "runner_above": null
-    },
-    "131268": {
-      "city_id": "131268",
-      "name": "Toronto",
-      "completed": 10274,
-      "total": 10318,
-      "percentage": 99.57,
-      "rank": 2,
-      "total_runners": 3872,
-      "city_url": "https://citystrides.com/users/55228/cities/131268",
-      "was_100": false,
-      "runner_above": {
-        "name": "A private Strider",
-        "pct": 100.0
-      }
-    },
-    "38014": {
-      "city_id": "38014",
-      "name": "Etobicoke",
-      "completed": 1888,
-      "total": 1931,
-      "percentage": 97.77,
-      "rank": 9,
-      "total_runners": 855,
-      "city_url": "https://citystrides.com/users/55228/cities/38014",
-      "was_100": false,
-      "runner_above": {
-        "name": "Steve Jackson",
-        "pct": 98.65
-      }
     },
     "37668": {
       "city_id": "37668",
