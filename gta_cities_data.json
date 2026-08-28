@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-27 14:19:28",
+  "last_updated": "2026-08-28 12:19:18",
   "cities": {
     "131268": {
       "city_id": "131268",
@@ -8,7 +8,7 @@
       "total": 10318,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 3874,
+      "total_runners": 3876,
       "city_url": "https://citystrides.com/users/55228/cities/131268",
       "was_100": true,
       "runner_above": null
@@ -56,7 +56,7 @@
       "total": 2470,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 3611,
+      "total_runners": 3613,
       "city_url": "https://citystrides.com/users/55228/cities/38121",
       "was_100": true,
       "runner_above": null
@@ -118,16 +118,16 @@
     "37878": {
       "city_id": "37878",
       "name": "Richmond Hill",
-      "completed": 36,
+      "completed": 79,
       "total": 1377,
-      "percentage": 2.61,
-      "rank": 27,
+      "percentage": 5.74,
+      "rank": 17,
       "total_runners": 195,
       "city_url": "https://citystrides.com/users/55228/cities/37878",
       "was_100": false,
       "runner_above": {
         "name": "A private Strider",
-        "pct": 2.69
+        "pct": 5.81
       }
     }
   }
