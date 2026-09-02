@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-01 12:41:22",
+  "last_updated": "2026-09-02 12:35:33",
   "cities": {
     "131268": {
       "city_id": "131268",
@@ -8,7 +8,7 @@
       "total": 10318,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 3886,
+      "total_runners": 3889,
       "city_url": "https://citystrides.com/users/55228/cities/131268",
       "was_100": true,
       "runner_above": null
@@ -20,7 +20,7 @@
       "total": 2710,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 947,
+      "total_runners": 948,
       "city_url": "https://citystrides.com/users/55228/cities/38108",
       "was_100": true,
       "runner_above": null
@@ -44,7 +44,7 @@
       "total": 404,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 745,
+      "total_runners": 746,
       "city_url": "https://citystrides.com/users/55228/cities/38114",
       "was_100": true,
       "runner_above": null
@@ -56,7 +56,7 @@
       "total": 2470,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 3623,
+      "total_runners": 3625,
       "city_url": "https://citystrides.com/users/55228/cities/38121",
       "was_100": true,
       "runner_above": null
@@ -68,7 +68,7 @@
       "total": 1931,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 858,
+      "total_runners": 860,
       "city_url": "https://citystrides.com/users/55228/cities/38014",
       "was_100": true,
       "runner_above": null
@@ -80,7 +80,7 @@
       "total": 2599,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 581,
+      "total_runners": 582,
       "city_url": "https://citystrides.com/users/55228/cities/38007",
       "was_100": true,
       "runner_above": null
@@ -118,9 +118,9 @@
     "37878": {
       "city_id": "37878",
       "name": "Richmond Hill",
-      "completed": 125,
+      "completed": 156,
       "total": 1377,
-      "percentage": 9.08,
+      "percentage": 11.33,
       "rank": 11,
       "total_runners": 195,
       "city_url": "https://citystrides.com/users/55228/cities/37878",
