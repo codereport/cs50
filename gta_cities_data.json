@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-02 12:35:33",
+  "last_updated": "2026-09-04 13:28:14",
   "cities": {
     "131268": {
       "city_id": "131268",
@@ -8,7 +8,7 @@
       "total": 10318,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 3889,
+      "total_runners": 3892,
       "city_url": "https://citystrides.com/users/55228/cities/131268",
       "was_100": true,
       "runner_above": null
@@ -20,32 +20,8 @@
       "total": 2710,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 948,
+      "total_runners": 947,
       "city_url": "https://citystrides.com/users/55228/cities/38108",
-      "was_100": true,
-      "runner_above": null
-    },
-    "38102": {
-      "city_id": "38102",
-      "name": "York",
-      "completed": 588,
-      "total": 588,
-      "percentage": 100.0,
-      "rank": 1,
-      "total_runners": 694,
-      "city_url": "https://citystrides.com/users/55228/cities/38102",
-      "was_100": true,
-      "runner_above": null
-    },
-    "38114": {
-      "city_id": "38114",
-      "name": "East York",
-      "completed": 404,
-      "total": 404,
-      "percentage": 100.0,
-      "rank": 1,
-      "total_runners": 746,
-      "city_url": "https://citystrides.com/users/55228/cities/38114",
       "was_100": true,
       "runner_above": null
     },
@@ -56,7 +32,7 @@
       "total": 2470,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 3625,
+      "total_runners": 3626,
       "city_url": "https://citystrides.com/users/55228/cities/38121",
       "was_100": true,
       "runner_above": null
@@ -68,7 +44,7 @@
       "total": 1931,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 860,
+      "total_runners": 862,
       "city_url": "https://citystrides.com/users/55228/cities/38014",
       "was_100": true,
       "runner_above": null
@@ -84,6 +60,36 @@
       "city_url": "https://citystrides.com/users/55228/cities/38007",
       "was_100": true,
       "runner_above": null
+    },
+    "38114": {
+      "city_id": "38114",
+      "name": "East York",
+      "completed": 399,
+      "total": 406,
+      "percentage": 98.28,
+      "rank": 13,
+      "total_runners": 730,
+      "city_url": "https://citystrides.com/users/55228/cities/38114",
+      "was_100": true,
+      "runner_above": {
+        "name": "Karen Alexander",
+        "pct": 98.52
+      }
+    },
+    "38102": {
+      "city_id": "38102",
+      "name": "York",
+      "completed": 572,
+      "total": 591,
+      "percentage": 96.79,
+      "rank": 10,
+      "total_runners": 697,
+      "city_url": "https://citystrides.com/users/55228/cities/38102",
+      "was_100": true,
+      "runner_above": {
+        "name": "A private Strider",
+        "pct": 98.31
+      }
     },
     "37668": {
       "city_id": "37668",
@@ -107,7 +113,7 @@
       "total": 2308,
       "percentage": 18.33,
       "rank": 8,
-      "total_runners": 362,
+      "total_runners": 361,
       "city_url": "https://citystrides.com/users/55228/cities/37680",
       "was_100": false,
       "runner_above": {

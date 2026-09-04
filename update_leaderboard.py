@@ -140,6 +140,7 @@ EXTENDED_CITIES = {
     "132377": "Barrie",
     "132379": "Hamilton",
     "37902": "Newmarket",
+    "37999": "Whitchurch-Stouffville",
 }
 
 def clean_name(name):
