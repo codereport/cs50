@@ -287,6 +287,23 @@
             color: #4c1d95;
         }
 
+        .map-screenshot {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid #e4e4e7;
+            border-radius: 8px;
+        }
+
+        .map-placeholder {
+            padding: 40px 20px;
+            color: #71717a;
+            background: #f8fafc;
+            border: 1px dashed #a1a1aa;
+            border-radius: 8px;
+            text-align: center;
+        }
+
         /* Let wide tables scroll horizontally instead of overflowing the viewport */
         .table-scroll {
             width: 100%;
@@ -407,6 +424,7 @@
         <div class="tab-bar" role="tablist" aria-label="Rankings views">
             <a class="tab-btn active" data-tab="leaderboard" href="#leaderboard" role="tab" aria-selected="true" aria-controls="tab-leaderboard">Top 50 Leaderboard</a>
             <a class="tab-btn" data-tab="gta" href="#gta" role="tab" aria-selected="false" aria-controls="tab-gta">Top GTA Cities</a>
+            <a class="tab-btn" data-tab="map" href="#map" role="tab" aria-selected="false" aria-controls="tab-map">Map</a>
         </div>
 
         <div id="tab-leaderboard" class="tab-content active">
@@ -1194,6 +1212,13 @@
                 <canvas id="torontoCompletionChart"></canvas>
             </div>
         </div>
+
+        <div id="tab-map" class="tab-content">
+            <p class="updated">Snapshot updated: 2026-09-04 13:58:47</p>
+            <a href="https://citystrides.com/users/55228/map" target="_blank" aria-label="Open the live CityStrides map">
+                <img class="map-screenshot" src="citystrides_map.png?v=1788544727" alt="CityStrides map for Conor Hoekstra">
+            </a>
+        </div>
     </div>
 
     <div id="chartModal" class="modal">
@@ -1207,7 +1232,7 @@
     </div>
 
     <script>
-        const tabIds = ['leaderboard', 'gta'];
+        const tabIds = ['leaderboard', 'gta', 'map'];
 
         function switchTab(tabId) {
             document.querySelectorAll('.tab-btn').forEach(btn => {

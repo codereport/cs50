@@ -111,6 +111,7 @@ SESSION.mount("http://", _adapter)
 
 DATA_FILE = "leaderboard_data.json"
 HTML_FILE = "index.html"
+MAP_SCREENSHOT_FILE = "citystrides_map.png"
 PAGES_TO_FETCH = 5 # 12 per page * 5 = 60 runners, enough for top 50
 HISTORY_DIR = "history"
 
@@ -119,6 +120,7 @@ GTA_HISTORY_FILE = "gta_history.json"
 TORONTO_CITY_ID = "131268"
 TORONTO_COMPLETION_DATE = "2026-08-27 14:19:28"
 CONOR_USER_ID = "55228"
+MAP_URL = f"https://citystrides.com/users/{CONOR_USER_ID}/map"
 
 GTA_CITIES = {
     "131268": "Toronto",
@@ -702,10 +704,154 @@ def ordinal(n):
     return f"{n}{suffix}"
 
 
+def find_firefox_profile():
+    """Return the default Firefox profile, with an environment override."""
+    import configparser
+    from pathlib import Path
+
+    override = os.environ.get("CITYSTRIDES_FIREFOX_PROFILE")
+    if override:
+        profile = Path(override).expanduser()
+        if profile.is_dir():
+            return profile
+        raise RuntimeError(
+            f"CITYSTRIDES_FIREFOX_PROFILE is not a directory: {profile}"
+        )
+
+    firefox_roots = (
+        Path.home() / "snap/firefox/common/.mozilla/firefox",
+        Path.home() / ".mozilla/firefox",
+    )
+    for root in firefox_roots:
+        profiles_file = root / "profiles.ini"
+        if not profiles_file.is_file():
+            continue
+
+        profiles = configparser.ConfigParser()
+        profiles.read(profiles_file)
+        sections = [s for s in profiles.sections() if s.startswith("Profile")]
+        sections.sort(key=lambda s: profiles.getboolean(s, "Default", fallback=False), reverse=True)
+        for section in sections:
+            configured_path = Path(profiles.get(section, "Path"))
+            profile = root / configured_path if profiles.getboolean(
+                section, "IsRelative", fallback=True
+            ) else configured_path
+            if profile.is_dir():
+                return profile
+
+    raise RuntimeError(
+        "no Firefox profile was found; set CITYSTRIDES_FIREFOX_PROFILE to one"
+    )
+
+
+def update_map_screenshot():
+    """Render the signed-in CityStrides LifeMap and atomically save its map area."""
+    import shutil
+    from pathlib import Path
+
+    try:
+        from selenium import webdriver
+        from selenium.webdriver.common.by import By
+        from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
+        from selenium.webdriver.support.ui import WebDriverWait
+    except ImportError as exc:
+        raise RuntimeError(
+            "Selenium is required for --map; run `uv sync` to install it."
+        ) from exc
+
+    source_profile = find_firefox_profile()
+    firefox_profile = FirefoxProfile(str(source_profile))
+    profile_copy_root = Path(firefox_profile.path).parent
+
+    options = webdriver.FirefoxOptions()
+    options.add_argument("-headless")
+    options.profile = firefox_profile
+    snap_firefox = Path("/snap/firefox/current/usr/lib/firefox/firefox")
+    if snap_firefox.is_file():
+        options.binary_location = str(snap_firefox)
+
+    temp_file = f".{MAP_SCREENSHOT_FILE}.tmp.png"
+    driver = None
+    print(f"Updating map screenshot from {MAP_URL} using your Firefox session...")
+    try:
+        driver = webdriver.Firefox(options=options)
+        driver.set_window_size(1900, 1320)
+        driver.get(MAP_URL)
+
+        wait = WebDriverWait(driver, 45)
+        map_element = wait.until(lambda browser: browser.find_element(By.ID, "map"))
+        logged_in_user = str(driver.execute_script("return window.loggedInUserId"))
+        if logged_in_user != CONOR_USER_ID:
+            raise RuntimeError(
+                f"the default Firefox profile is not signed in as user {CONOR_USER_ID}"
+            )
+        wait.until(
+            lambda browser: browser.execute_script(
+                """
+                const canvas = document.querySelector('#map canvas.mapboxgl-canvas');
+                return Boolean(canvas && canvas.width > 0 && canvas.height > 0 &&
+                    document.querySelector('#map .mapboxgl-ctrl-attrib'));
+                """
+            )
+        )
+
+        # Size the map itself to the reference capture, independently of the
+        # browser chrome dimensions used by a particular Firefox version.
+        target_width, target_height = 1845, 1188
+        for _ in range(3):
+            map_size = map_element.size
+            if map_size == {"width": target_width, "height": target_height}:
+                break
+            window_size = driver.get_window_size()
+            driver.set_window_size(
+                window_size["width"] + target_width - map_size["width"],
+                window_size["height"] + target_height - map_size["height"],
+            )
+            time.sleep(0.5)
+
+        # The canvas appears before the LifeMap overlay has finished
+        # loading, so give Mapbox a short settling window before capture.
+        time.sleep(8)
+        driver.execute_script(
+            "document.querySelector('#map .mapboxgl-control-container').style.display = 'none';"
+        )
+        if not map_element.screenshot(temp_file):
+            raise RuntimeError("the browser did not produce a screenshot")
+        if os.path.getsize(temp_file) < 100_000:
+            raise RuntimeError("the captured map appears to be blank")
+
+        os.replace(temp_file, MAP_SCREENSHOT_FILE)
+        print(f"Updated {MAP_SCREENSHOT_FILE}")
+    except Exception as exc:
+        raise RuntimeError(f"could not capture {MAP_URL}: {exc}") from exc
+    finally:
+        if driver is not None:
+            try:
+                driver.quit()
+            except Exception:
+                pass
+        if os.path.exists(temp_file):
+            os.remove(temp_file)
+        shutil.rmtree(profile_copy_root, ignore_errors=True)
+
+
 def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
     # Generate history files JSON for the frontend
     history_files_json = get_history_files_for_js()
     toronto_series_json = get_toronto_series_for_js()
+
+    if os.path.exists(MAP_SCREENSHOT_FILE):
+        map_timestamp = os.path.getmtime(MAP_SCREENSHOT_FILE)
+        map_updated = datetime.fromtimestamp(map_timestamp).strftime("%Y-%m-%d %H:%M:%S")
+        map_content_html = f"""<p class="updated">Snapshot updated: {map_updated}</p>
+            <a href="{MAP_URL}" target="_blank" aria-label="Open the live CityStrides map">
+                <img class="map-screenshot" src="{MAP_SCREENSHOT_FILE}?v={int(map_timestamp)}" alt="CityStrides map for Conor Hoekstra">
+            </a>"""
+    else:
+        map_content_html = """<p class="map-placeholder">
+                No map snapshot yet. Run <code>uv run update_leaderboard.py --map</code>
+                to create one.
+            </p>"""
 
     # Build GTA cities table rows
     gta_rows_html = ""
@@ -1058,6 +1204,23 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
             color: #4c1d95;
         }}
 
+        .map-screenshot {{
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid #e4e4e7;
+            border-radius: 8px;
+        }}
+
+        .map-placeholder {{
+            padding: 40px 20px;
+            color: #71717a;
+            background: #f8fafc;
+            border: 1px dashed #a1a1aa;
+            border-radius: 8px;
+            text-align: center;
+        }}
+
         /* Let wide tables scroll horizontally instead of overflowing the viewport */
         .table-scroll {{
             width: 100%;
@@ -1178,6 +1341,7 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
         <div class="tab-bar" role="tablist" aria-label="Rankings views">
             <a class="tab-btn active" data-tab="leaderboard" href="#leaderboard" role="tab" aria-selected="true" aria-controls="tab-leaderboard">Top 50 Leaderboard</a>
             <a class="tab-btn" data-tab="gta" href="#gta" role="tab" aria-selected="false" aria-controls="tab-gta">Top GTA Cities</a>
+            <a class="tab-btn" data-tab="map" href="#map" role="tab" aria-selected="false" aria-controls="tab-map">Map</a>
         </div>
 
         <div id="tab-leaderboard" class="tab-content active">
@@ -1309,6 +1473,10 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
                 <canvas id="torontoCompletionChart"></canvas>
             </div>
         </div>
+
+        <div id="tab-map" class="tab-content">
+            {map_content_html}
+        </div>
     </div>
 
     <div id="chartModal" class="modal">
@@ -1322,7 +1490,7 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
     </div>
 
     <script>
-        const tabIds = ['leaderboard', 'gta'];
+        const tabIds = ['leaderboard', 'gta', 'map'];
 
         function switchTab(tabId) {{
             document.querySelectorAll('.tab-btn').forEach(btn => {{
@@ -1624,6 +1792,7 @@ def serve_site(port):
 def main():
     # Parse flags out of argv, leaving any positional arg as the city filter.
     serve = True
+    capture_map = False
     port = SERVE_PORT
     positional = []
     args = sys.argv[1:]
@@ -1632,6 +1801,8 @@ def main():
         arg = args[i]
         if arg in ("--no-serve", "-n"):
             serve = False
+        elif arg == "--map":
+            capture_map = True
         elif arg in ("--port", "-p"):
             i += 1
             port = int(args[i])
@@ -1642,6 +1813,13 @@ def main():
         i += 1
 
     city_filter = positional[0] if positional else None
+
+    if capture_map:
+        try:
+            update_map_screenshot()
+        except RuntimeError as exc:
+            print(f"Map screenshot update failed: {exc}", file=sys.stderr)
+            return 1
 
     if city_filter:
         print(f"Filtering cities matching: '{city_filter}'")
@@ -1692,4 +1870,4 @@ def main():
         serve_site(port)
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

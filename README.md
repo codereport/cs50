@@ -25,6 +25,24 @@ This will:
 4.  Save the new data to `leaderboard_data.json`.
 5.  Generate `index.html`.
 
+The generated site also has a **Map** tab. Its image is kept between normal
+updates. Add `--map` when you want to refresh it from Conor's public
+CityStrides map. The capture uses your default Firefox profile, which must be
+signed into CityStrides as Conor:
+
+```bash
+uv run update_leaderboard.py --map
+```
+
+Use `--no-serve` if the script should exit after updating the files:
+
+```bash
+uv run update_leaderboard.py --map --no-serve
+```
+
+If the signed-in profile is not Firefox's default, set
+`CITYSTRIDES_FIREFOX_PROFILE` to its directory before running the command.
+
 ## Automation
 
 To run this weekly (e.g., every Sunday at 8 PM), add a cron job:
