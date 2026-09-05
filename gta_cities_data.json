@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-04 13:28:14",
+  "last_updated": "2026-09-05 11:52:17",
   "cities": {
     "131268": {
       "city_id": "131268",
@@ -8,7 +8,7 @@
       "total": 10318,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 3892,
+      "total_runners": 3894,
       "city_url": "https://citystrides.com/users/55228/cities/131268",
       "was_100": true,
       "runner_above": null
@@ -20,7 +20,7 @@
       "total": 2710,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 947,
+      "total_runners": 948,
       "city_url": "https://citystrides.com/users/55228/cities/38108",
       "was_100": true,
       "runner_above": null
@@ -32,7 +32,7 @@
       "total": 2470,
       "percentage": 100.0,
       "rank": 1,
-      "total_runners": 3626,
+      "total_runners": 3629,
       "city_url": "https://citystrides.com/users/55228/cities/38121",
       "was_100": true,
       "runner_above": null
@@ -83,7 +83,7 @@
       "total": 591,
       "percentage": 96.79,
       "rank": 10,
-      "total_runners": 697,
+      "total_runners": 698,
       "city_url": "https://citystrides.com/users/55228/cities/38102",
       "was_100": true,
       "runner_above": {
@@ -113,7 +113,7 @@
       "total": 2308,
       "percentage": 18.33,
       "rank": 8,
-      "total_runners": 361,
+      "total_runners": 362,
       "city_url": "https://citystrides.com/users/55228/cities/37680",
       "was_100": false,
       "runner_above": {
@@ -124,16 +124,16 @@
     "37878": {
       "city_id": "37878",
       "name": "Richmond Hill",
-      "completed": 156,
+      "completed": 194,
       "total": 1377,
-      "percentage": 11.33,
-      "rank": 11,
+      "percentage": 14.09,
+      "rank": 8,
       "total_runners": 195,
       "city_url": "https://citystrides.com/users/55228/cities/37878",
       "was_100": false,
       "runner_above": {
-        "name": "Vavi B",
-        "pct": 12.2
+        "name": "A private Strider",
+        "pct": 19.1
       }
     }
   }
