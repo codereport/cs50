@@ -1339,8 +1339,8 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
         <h1>CityStrides Rankings</h1>
 
         <div class="tab-bar" role="tablist" aria-label="Rankings views">
-            <a class="tab-btn active" data-tab="leaderboard" href="#leaderboard" role="tab" aria-selected="true" aria-controls="tab-leaderboard">Top 50 Leaderboard</a>
-            <a class="tab-btn" data-tab="gta" href="#gta" role="tab" aria-selected="false" aria-controls="tab-gta">Top GTA Cities</a>
+            <a class="tab-btn active" data-tab="leaderboard" href="#leaderboard" role="tab" aria-selected="true" aria-controls="tab-leaderboard">Top 50</a>
+            <a class="tab-btn" data-tab="gta" href="#gta" role="tab" aria-selected="false" aria-controls="tab-gta">GTA</a>
             <a class="tab-btn" data-tab="map" href="#map" role="tab" aria-selected="false" aria-controls="tab-map">Map</a>
         </div>
 
