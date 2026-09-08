@@ -1513,6 +1513,22 @@ def generate_html(runners, last_updated, gta_cities=None, extended_cities=None):
 
         window.addEventListener('hashchange', syncTabFromUrl);
 
+        document.addEventListener('keydown', function (event) {{
+            if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+            if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+
+            const target = event.target;
+            if (target.matches('input, select, textarea, button') || target.isContentEditable) return;
+
+            const activeTab = document.querySelector('.tab-btn.active');
+            const currentIndex = tabIds.indexOf(activeTab.dataset.tab);
+            const direction = event.key === 'ArrowRight' ? 1 : -1;
+            const nextIndex = (currentIndex + direction + tabIds.length) % tabIds.length;
+
+            event.preventDefault();
+            window.location.hash = tabIds[nextIndex];
+        }});
+
         const historyFiles = {history_files_json};
 
         const torontoSeries = {toronto_series_json};
