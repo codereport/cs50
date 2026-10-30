@@ -18,6 +18,9 @@ Run the update script to fetch the latest data and generate the website:
 uv run update_leaderboard.py
 ```
 
+You can also run `./update_leaderboard.py` from the project directory. Its
+launcher uses `uv` to run with the project's dependencies.
+
 This will:
 1.  Read `leaderboard_data.json` (if it exists) to get the previous week's stats.
 2.  Fetch the current top 50 runners from CityStrides.

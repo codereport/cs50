@@ -1,139 +1,154 @@
 {
-  "last_updated": "2026-09-08 10:05:41",
+  "last_updated": "2026-10-30 07:43:04",
   "cities": {
-    "131268": {
-      "city_id": "131268",
-      "name": "Toronto",
-      "completed": 10318,
-      "total": 10318,
-      "percentage": 100.0,
-      "rank": 1,
-      "total_runners": 3898,
-      "city_url": "https://citystrides.com/users/55228/cities/131268",
+    "38007": {
+      "city_id": "38007",
+      "name": "Scarborough",
+      "completed": 2588,
+      "total": 2593,
+      "percentage": 99.81,
+      "rank": 2,
+      "total_runners": 596,
+      "city_url": "https://citystrides.com/users/55228/cities/38007",
       "was_100": true,
-      "runner_above": null
-    },
-    "38108": {
-      "city_id": "38108",
-      "name": "North York",
-      "completed": 2710,
-      "total": 2710,
-      "percentage": 100.0,
-      "rank": 1,
-      "total_runners": 949,
-      "city_url": "https://citystrides.com/users/55228/cities/38108",
-      "was_100": true,
-      "runner_above": null
+      "runner_above": {
+        "name": "A private Strider",
+        "pct": 100.0
+      }
     },
     "38121": {
       "city_id": "38121",
       "name": "Old Toronto",
-      "completed": 2470,
-      "total": 2470,
-      "percentage": 100.0,
-      "rank": 1,
-      "total_runners": 3634,
+      "completed": 2473,
+      "total": 2480,
+      "percentage": 99.72,
+      "rank": 5,
+      "total_runners": 3754,
       "city_url": "https://citystrides.com/users/55228/cities/38121",
       "was_100": true,
-      "runner_above": null
+      "runner_above": {
+        "name": "Matthew Stroh",
+        "pct": 99.76
+      }
+    },
+    "38108": {
+      "city_id": "38108",
+      "name": "North York",
+      "completed": 2740,
+      "total": 2750,
+      "percentage": 99.64,
+      "rank": 3,
+      "total_runners": 1030,
+      "city_url": "https://citystrides.com/users/55228/cities/38108",
+      "was_100": true,
+      "runner_above": {
+        "name": "Steve Jackson",
+        "pct": 99.82
+      }
+    },
+    "131268": {
+      "city_id": "131268",
+      "name": "Toronto",
+      "completed": 10277,
+      "total": 10326,
+      "percentage": 99.53,
+      "rank": 2,
+      "total_runners": 4020,
+      "city_url": "https://citystrides.com/users/55228/cities/131268",
+      "was_100": true,
+      "runner_above": {
+        "name": "A private Strider",
+        "pct": 99.98
+      }
     },
     "38014": {
       "city_id": "38014",
       "name": "Etobicoke",
-      "completed": 1931,
-      "total": 1931,
-      "percentage": 100.0,
-      "rank": 1,
-      "total_runners": 863,
+      "completed": 1927,
+      "total": 1937,
+      "percentage": 99.48,
+      "rank": 6,
+      "total_runners": 928,
       "city_url": "https://citystrides.com/users/55228/cities/38014",
       "was_100": true,
-      "runner_above": null
-    },
-    "38007": {
-      "city_id": "38007",
-      "name": "Scarborough",
-      "completed": 2599,
-      "total": 2599,
-      "percentage": 100.0,
-      "rank": 1,
-      "total_runners": 582,
-      "city_url": "https://citystrides.com/users/55228/cities/38007",
-      "was_100": true,
-      "runner_above": null
+      "runner_above": {
+        "name": "Steve Jackson",
+        "pct": 99.69
+      }
     },
     "38114": {
       "city_id": "38114",
       "name": "East York",
-      "completed": 399,
+      "completed": 398,
       "total": 406,
-      "percentage": 98.28,
-      "rank": 13,
-      "total_runners": 731,
+      "percentage": 98.03,
+      "rank": 14,
+      "total_runners": 744,
       "city_url": "https://citystrides.com/users/55228/cities/38114",
       "was_100": true,
       "runner_above": {
-        "name": "Karen Alexander",
+        "name": "David Tulk",
         "pct": 98.52
       }
     },
     "38102": {
       "city_id": "38102",
       "name": "York",
-      "completed": 572,
-      "total": 591,
-      "percentage": 96.79,
+      "completed": 567,
+      "total": 588,
+      "percentage": 96.43,
       "rank": 10,
-      "total_runners": 698,
+      "total_runners": 708,
       "city_url": "https://citystrides.com/users/55228/cities/38102",
       "was_100": true,
       "runner_above": {
         "name": "A private Strider",
-        "pct": 98.31
+        "pct": 98.3
       }
     },
     "37668": {
       "city_id": "37668",
       "name": "Vaughan",
-      "completed": 543,
-      "total": 2365,
-      "percentage": 22.96,
+      "completed": 556,
+      "total": 2445,
+      "percentage": 22.74,
       "rank": 5,
-      "total_runners": 240,
+      "total_runners": 346,
       "city_url": "https://citystrides.com/users/55228/cities/37668",
       "was_100": false,
       "runner_above": {
         "name": "Amanda Natale",
-        "pct": 25.58
+        "pct": 24.87
       }
     },
     "37878": {
       "city_id": "37878",
       "name": "Richmond Hill",
-      "completed": 302,
-      "total": 1377,
-      "percentage": 21.93,
-      "rank": 5,
-      "total_runners": 195,
+      "completed": 304,
+      "total": 1460,
+      "percentage": 20.82,
+      "rank": 6,
+      "total_runners": 222,
       "city_url": "https://citystrides.com/users/55228/cities/37878",
       "was_100": false,
       "runner_above": {
         "name": "A private Strider",
-        "pct": 26.29
+        "pct": 24.93
       }
     },
     "37680": {
       "city_id": "37680",
       "name": "Markham",
-      "completed": 423,
-      "total": 2308,
-      "percentage": 18.33,
+      "completed": 430,
+      "total": 2359,
+      "percentage": 18.23,
       "rank": 8,
-      "total_runners": 362,
+      "total_runners": 405,
       "city_url": "https://citystrides.com/users/55228/cities/37680",
       "was_100": false,
       "runner_above": {
         "name": "Scott Devenport",
-        "pct": 27.43
+        "pct": 26.88
       }
     }
   }
