@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-30 07:43:04",
+  "last_updated": "2026-10-30 13:52:00",
   "cities": {
     "38007": {
       "city_id": "38007",
@@ -23,7 +23,7 @@
       "total": 2480,
       "percentage": 99.72,
       "rank": 5,
-      "total_runners": 3754,
+      "total_runners": 3757,
       "city_url": "https://citystrides.com/users/55228/cities/38121",
       "was_100": true,
       "runner_above": {
@@ -53,7 +53,7 @@
       "total": 10326,
       "percentage": 99.53,
       "rank": 2,
-      "total_runners": 4020,
+      "total_runners": 4022,
       "city_url": "https://citystrides.com/users/55228/cities/131268",
       "was_100": true,
       "runner_above": {
@@ -83,7 +83,7 @@
       "total": 406,
       "percentage": 98.03,
       "rank": 14,
-      "total_runners": 744,
+      "total_runners": 745,
       "city_url": "https://citystrides.com/users/55228/cities/38114",
       "was_100": true,
       "runner_above": {
@@ -124,9 +124,9 @@
     "37878": {
       "city_id": "37878",
       "name": "Richmond Hill",
-      "completed": 304,
+      "completed": 329,
       "total": 1460,
-      "percentage": 20.82,
+      "percentage": 22.53,
       "rank": 6,
       "total_runners": 222,
       "city_url": "https://citystrides.com/users/55228/cities/37878",
