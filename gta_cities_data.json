@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-30 13:52:00",
+  "last_updated": "2026-11-02 14:27:34",
   "cities": {
     "38007": {
       "city_id": "38007",
@@ -23,7 +23,7 @@
       "total": 2480,
       "percentage": 99.72,
       "rank": 5,
-      "total_runners": 3757,
+      "total_runners": 3761,
       "city_url": "https://citystrides.com/users/55228/cities/38121",
       "was_100": true,
       "runner_above": {
@@ -38,7 +38,7 @@
       "total": 2750,
       "percentage": 99.64,
       "rank": 3,
-      "total_runners": 1030,
+      "total_runners": 1031,
       "city_url": "https://citystrides.com/users/55228/cities/38108",
       "was_100": true,
       "runner_above": {
@@ -53,7 +53,7 @@
       "total": 10326,
       "percentage": 99.53,
       "rank": 2,
-      "total_runners": 4022,
+      "total_runners": 4026,
       "city_url": "https://citystrides.com/users/55228/cities/131268",
       "was_100": true,
       "runner_above": {
@@ -68,7 +68,7 @@
       "total": 1937,
       "percentage": 99.48,
       "rank": 6,
-      "total_runners": 928,
+      "total_runners": 929,
       "city_url": "https://citystrides.com/users/55228/cities/38014",
       "was_100": true,
       "runner_above": {
@@ -98,7 +98,7 @@
       "total": 588,
       "percentage": 96.43,
       "rank": 10,
-      "total_runners": 708,
+      "total_runners": 709,
       "city_url": "https://citystrides.com/users/55228/cities/38102",
       "was_100": true,
       "runner_above": {
@@ -106,27 +106,12 @@
         "pct": 98.3
       }
     },
-    "37668": {
-      "city_id": "37668",
-      "name": "Vaughan",
-      "completed": 556,
-      "total": 2445,
-      "percentage": 22.74,
-      "rank": 5,
-      "total_runners": 346,
-      "city_url": "https://citystrides.com/users/55228/cities/37668",
-      "was_100": false,
-      "runner_above": {
-        "name": "Amanda Natale",
-        "pct": 24.87
-      }
-    },
     "37878": {
       "city_id": "37878",
       "name": "Richmond Hill",
-      "completed": 329,
+      "completed": 347,
       "total": 1460,
-      "percentage": 22.53,
+      "percentage": 23.77,
       "rank": 6,
       "total_runners": 222,
       "city_url": "https://citystrides.com/users/55228/cities/37878",
@@ -136,12 +121,27 @@
         "pct": 24.93
       }
     },
+    "37668": {
+      "city_id": "37668",
+      "name": "Vaughan",
+      "completed": 556,
+      "total": 2445,
+      "percentage": 22.74,
+      "rank": 5,
+      "total_runners": 347,
+      "city_url": "https://citystrides.com/users/55228/cities/37668",
+      "was_100": false,
+      "runner_above": {
+        "name": "Amanda Natale",
+        "pct": 24.87
+      }
+    },
     "37680": {
       "city_id": "37680",
       "name": "Markham",
-      "completed": 430,
+      "completed": 431,
       "total": 2359,
-      "percentage": 18.23,
+      "percentage": 18.27,
       "rank": 8,
       "total_runners": 405,
       "city_url": "https://citystrides.com/users/55228/cities/37680",
