@@ -718,7 +718,9 @@ def find_firefox_profile():
             f"CITYSTRIDES_FIREFOX_PROFILE is not a directory: {profile}"
         )
 
+    config_home = Path(os.environ.get("XDG_CONFIG_HOME") or Path.home() / ".config").expanduser()
     firefox_roots = (
+        config_home / "mozilla/firefox",
         Path.home() / "snap/firefox/common/.mozilla/firefox",
         Path.home() / ".mozilla/firefox",
     )
@@ -729,6 +731,18 @@ def find_firefox_profile():
 
         profiles = configparser.ConfigParser()
         profiles.read(profiles_file)
+
+        # Firefox's installation-specific default takes precedence over the
+        # older Default=1 flag on a Profile section.
+        for section in profiles.sections():
+            if not section.startswith("Install"):
+                continue
+            default_path = profiles.get(section, "Default", fallback=None)
+            if default_path:
+                profile = root / default_path
+                if profile.is_dir():
+                    return profile
+
         sections = [s for s in profiles.sections() if s.startswith("Profile")]
         sections.sort(key=lambda s: profiles.getboolean(s, "Default", fallback=False), reverse=True)
         for section in sections:
@@ -783,7 +797,9 @@ def update_map_screenshot():
         logged_in_user = str(driver.execute_script("return window.loggedInUserId"))
         if logged_in_user != CONOR_USER_ID:
             raise RuntimeError(
-                f"the default Firefox profile is not signed in as user {CONOR_USER_ID}"
+                f"Firefox profile {source_profile} is not signed in to CityStrides "
+                f"as user {CONOR_USER_ID}; sign in at https://citystrides.com "
+                "in Firefox and retry"
             )
         wait.until(
             lambda browser: browser.execute_script(

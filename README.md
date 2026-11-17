@@ -45,6 +45,10 @@ uv run update_leaderboard.py --map --no-serve
 
 If the signed-in profile is not Firefox's default, set
 `CITYSTRIDES_FIREFOX_PROFILE` to its directory before running the command.
+Profiles are detected under `$XDG_CONFIG_HOME/mozilla/firefox` (normally
+`~/.config/mozilla/firefox`), as well as the legacy `~/.mozilla/firefox`
+and Snap locations. Firefox's installation-specific default takes precedence
+over the older per-profile default flag.
 
 ## Automation
 
