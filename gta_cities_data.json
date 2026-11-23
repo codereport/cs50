@@ -1,64 +1,31 @@
 {
-  "last_updated": "2026-11-20 15:24:31",
+  "last_updated": "2026-11-23 14:33:01",
   "cities": {
     "38007": {
       "city_id": "38007",
       "name": "Scarborough",
-      "completed": 2588,
+      "completed": 2586,
       "total": 2593,
-      "percentage": 99.81,
+      "percentage": 99.73,
       "rank": 2,
       "total_runners": 597,
       "city_url": "https://citystrides.com/users/55228/cities/38007",
       "was_100": true,
-      "runner_above": {
-        "name": "A private Strider",
-        "pct": 100.0
-      }
-    },
-    "38121": {
-      "city_id": "38121",
-      "name": "Old Toronto",
-      "completed": 2473,
-      "total": 2480,
-      "percentage": 99.72,
-      "rank": 5,
-      "total_runners": 3784,
-      "city_url": "https://citystrides.com/users/55228/cities/38121",
-      "was_100": true,
-      "runner_above": {
-        "name": "Matthew Stroh",
-        "pct": 99.76
-      }
+      "runner_above": null
     },
     "38108": {
       "city_id": "38108",
       "name": "North York",
-      "completed": 2740,
+      "completed": 2739,
       "total": 2750,
-      "percentage": 99.64,
+      "percentage": 99.6,
       "rank": 3,
-      "total_runners": 1042,
+      "total_runners": 1043,
       "city_url": "https://citystrides.com/users/55228/cities/38108",
       "was_100": true,
       "runner_above": {
         "name": "Steve Jackson",
         "pct": 99.89
-      }
-    },
-    "131268": {
-      "city_id": "131268",
-      "name": "Toronto",
-      "completed": 10277,
-      "total": 10326,
-      "percentage": 99.53,
-      "rank": 2,
-      "total_runners": 4053,
-      "city_url": "https://citystrides.com/users/55228/cities/131268",
-      "was_100": true,
-      "runner_above": {
-        "name": "A private Strider",
-        "pct": 99.98
       }
     },
     "38014": {
@@ -68,12 +35,42 @@
       "total": 1937,
       "percentage": 99.48,
       "rank": 7,
-      "total_runners": 936,
+      "total_runners": 938,
       "city_url": "https://citystrides.com/users/55228/cities/38014",
       "was_100": true,
       "runner_above": {
         "name": "David Tulk",
         "pct": 99.64
+      }
+    },
+    "131268": {
+      "city_id": "131268",
+      "name": "Toronto",
+      "completed": 10224,
+      "total": 10326,
+      "percentage": 99.01,
+      "rank": 5,
+      "total_runners": 4055,
+      "city_url": "https://citystrides.com/users/55228/cities/131268",
+      "was_100": true,
+      "runner_above": {
+        "name": "Richard Denis",
+        "pct": 99.24
+      }
+    },
+    "38121": {
+      "city_id": "38121",
+      "name": "Old Toronto",
+      "completed": 2446,
+      "total": 2480,
+      "percentage": 98.63,
+      "rank": 9,
+      "total_runners": 3786,
+      "city_url": "https://citystrides.com/users/55228/cities/38121",
+      "was_100": true,
+      "runner_above": {
+        "name": "Carlo De Lorenzi",
+        "pct": 98.99
       }
     },
     "38114": {
@@ -83,7 +80,7 @@
       "total": 406,
       "percentage": 98.03,
       "rank": 14,
-      "total_runners": 747,
+      "total_runners": 748,
       "city_url": "https://citystrides.com/users/55228/cities/38114",
       "was_100": true,
       "runner_above": {
@@ -94,9 +91,9 @@
     "38102": {
       "city_id": "38102",
       "name": "York",
-      "completed": 567,
+      "completed": 570,
       "total": 588,
-      "percentage": 96.43,
+      "percentage": 96.94,
       "rank": 10,
       "total_runners": 715,
       "city_url": "https://citystrides.com/users/55228/cities/38102",
@@ -109,16 +106,16 @@
     "37878": {
       "city_id": "37878",
       "name": "Richmond Hill",
-      "completed": 412,
+      "completed": 439,
       "total": 1462,
-      "percentage": 28.18,
-      "rank": 4,
+      "percentage": 30.03,
+      "rank": 3,
       "total_runners": 223,
       "city_url": "https://citystrides.com/users/55228/cities/37878",
       "was_100": false,
       "runner_above": {
-        "name": "A private Strider",
-        "pct": 29.89
+        "name": "Gigi Goncalves",
+        "pct": 71.89
       }
     },
     "37668": {
@@ -143,7 +140,7 @@
       "total": 2361,
       "percentage": 18.38,
       "rank": 8,
-      "total_runners": 406,
+      "total_runners": 407,
       "city_url": "https://citystrides.com/users/55228/cities/37680",
       "was_100": false,
       "runner_above": {
